@@ -54,6 +54,7 @@ class DatabaseDisplay(ttk.Treeview):
         if self.master.master.filepath == '': 
             showinfo("Student Information System", "To start, click on 'File' and choose 'New' or 'Open'.") 
 
+
         count = 1
         for element in student_list:
             rowid = 'I' + str('{:03}'.format(count))
@@ -131,7 +132,7 @@ class ButtonsFrame(ttk.Frame): #This method initializes an instance of the Butto
         Delete_Button = Button(self, text="Delete", relief=RAISED, fg="orange", bg="Blue", height = 1, width = 6, font=('Roboto Mono', "16", 'bold'), command = master.master.master.delete_choice_popup)
         Search_Entry = ttk.Entry(self, textvariable=searchvar, style="UserDataDisplay.TEntry", width=25, font=('Lucida Sans', "16", 'bold'))
        #reads the csv file then performs a search operation using the content of the entry widget searchvar
-        def search_entry_type():
+        def search_entry_type(event):
             try:
                 cmd.csv_read(master.master.master.filepath)
                 master.master.master.search(searchvar.get())
@@ -324,6 +325,7 @@ class Main_App_Window(Tk):
     def get_input(self):
         try:
             x = self.UserDataFrame.single_data_input
+            
 
 
             cmd.csv_data_add(self.filepath, x)
