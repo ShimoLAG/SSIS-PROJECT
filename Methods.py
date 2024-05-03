@@ -14,7 +14,7 @@ class Method_List():
             reader = csv.reader(file, delimiter = ',')
 
             alldata = []
-            for row in reader:
+            for row in reader:    
                 alldata.append(row)
             return alldata
 
@@ -44,6 +44,9 @@ class Method_List():
         data = []
         with open(filename, 'r') as file:
             csv_reader = csv.reader(file)
+            next(csv_reader)
             for row in csv_reader:
                 data.append(tuple(row))
         return data
+    
+    
