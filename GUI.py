@@ -164,31 +164,35 @@ class ButtonsFrame(ttk.Frame):
 class App(Tk):
     def __init__(self):
         super().__init__()
-
+        # Regular expression for validation (e.g., student ID format)
         self.rex = re.compile("^[0-9]{4}[-][0-9]{4}$")
 
-        self.IDNo = ''
-        self.FullName = ''
-        self.Course = ''
-        self.Year = ''
-        self.Gender = ''
+        # Initialize instance variables for storing student information
+        self.IDNo = ''       # Student ID number
+        self.FullName = ''   # Full name of the student
+        self.Course = ''     # Course enrolled
+        self.Year = ''       # Year of study
+        self.Gender = ''     # Gender of the student
 
-        self.dataread_list = []
-        self.index = 0
+        # Initialize other instance variables
+        self.dataread_list = []      # List for storing read data
+        self.index = 0               # Index for navigating through data
+        self.filepath = ''           # File path for saving/loading data
 
-        self.filepath = ''
+        # Flags for managing application state
+        self.addCheck = False        # Flag to check if adding a new entry
+        self.editCheck = False       # Flag to check if editing an entry
+        self.ID_removedisplay_check = False  # Flag for display control when ID is removed
 
-        self.addCheck = False
-        self.editCheck = False
-        self.ID_removedisplay_check = False
-
+        # Set up the main window
         self.title("Student Information System")
-        self.geometry("1365x670+0+0")
+        self.geometry("1365x670+0+0")  # Set the window size and position
 
+        # Set minimum and maximum window size
         self.wm_minsize(1365, 670)
         self.wm_maxsize(1365, 670)
 
-       
+        # Start the window in maximized state
         self.state('zoomed')
 
 
@@ -418,6 +422,8 @@ class App(Tk):
         coursecode_entry = StringVar()
 
         editcourse_selected = self.course_selected("<<TreeviewSelect>>")
+
+        
         initial_ccode = editcourse_selected[0]
 
         editcourse_Toplevel = Toplevel(self, bg="#243447")
@@ -453,14 +459,17 @@ class App(Tk):
         try:
             courseedit.destroy()
 
-            ccode = ccode.get()
-            cname = cname.get()
+            ccode = ccode.get().strip()
+            cname = cname.get().strip()
+
+            if not ccode or not cname:
+                raise ValueError("Course code and name cannot be empty.")
 
             updated_courses = []
             course_updated = False
 
             # Read the existing courses from the CSV
-            with open('Courses.csv', 'r', newline='') as csvfile:
+            with open('Courses.csv', 'r', newline='', encoding='utf-8') as csvfile:
                 reader = csv.reader(csvfile)
                 header = next(reader)  # Read the header
                 for row in reader:
@@ -477,10 +486,27 @@ class App(Tk):
                         raise ValueError("The course code that you entered already exists.")
 
             # Write the updated courses back to the CSV
-            with open('Courses.csv', 'w', newline='') as csvfile:
+            with open('Courses.csv', 'w', newline='', encoding='utf-8') as csvfile:
                 writer = csv.writer(csvfile)
                 writer.writerow(header)  # Write the header
                 writer.writerows(updated_courses)
+
+            # Update students with the old course code
+            updated_students = []
+            with open(self.filepath, 'r', newline='', encoding='utf-8') as csvfile:
+                reader = csv.reader(csvfile)
+                student_header = next(reader)  # Read the header
+                for row in reader:
+                    if row[2] == initial_ccode: 
+                        row[2] = ccode
+                    updated_students.append(row)
+
+            with open(self.filepath, 'w', newline='', encoding='utf-8') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(student_header)  # Write the header
+                writer.writerows(updated_students)
+
+            self.treeview.Treeview_Update(cmd.csv_read(self.filepath))
 
             showinfo("Success", f"'{initial_ccode}' has been successfully edited.")
             course_window.focus()
