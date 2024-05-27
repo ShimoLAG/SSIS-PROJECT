@@ -417,13 +417,12 @@ class App(Tk):
 
         return course_row
 
+
     def editcourse(self, course_window):
         coursename_entry = StringVar()
         coursecode_entry = StringVar()
 
         editcourse_selected = self.course_selected("<<TreeviewSelect>>")
-
-        
         initial_ccode = editcourse_selected[0]
 
         editcourse_Toplevel = Toplevel(self, bg="#243447")
@@ -453,7 +452,8 @@ class App(Tk):
         coursecode_entry.set(editcourse_selected[0])
         coursename_entry.set(editcourse_selected[1])
 
-        Button(rowd, text="Edit", relief=RAISED, fg="white", bg="#8E3E63", height=1, width=6, font=('Lucida Sans', "16", 'bold'), command=lambda: self.editcourse_confirm(editcourse_Toplevel, coursecode_entry, coursename_entry, course_window, initial_ccode)).pack(side=LEFT, padx=10)
+        Button(rowd, text="Edit", relief=RAISED, fg="white", bg="#8E3E63", height=1, width=6, font=('Lucida Sans', "16", 'bold'),
+               command=lambda: self.editcourse_confirm(editcourse_Toplevel, coursecode_entry, coursename_entry, course_window, initial_ccode)).pack(side=LEFT, padx=10)
 
     def editcourse_confirm(self, courseedit, ccode, cname, course_window, initial_ccode):
         try:
@@ -726,9 +726,8 @@ class App(Tk):
             if not self.rex.match(self.UserDataFrame.Var_IDNo.get()) and not self.rex.match(self.UserDataFrame.Var_Course.get()):
                 raise IDInvalid
         except IDInvalid:
-                showerror("Invalid Input for ID or Course code already exists", "Invalid Input. \nID must be in \nYYYY-NNNN format.")
-                return
-
+            showerror("Invalid Input for ID or Course code already exists", "Invalid Input. \nID must be in \nYYYY-NNNN format.")
+            return
         
         if check == "add":
             self.addCheck = False
@@ -737,6 +736,17 @@ class App(Tk):
             self.get_input()
 
         elif check == "edit":
+            # Fetch the new ID that the user wants to set
+            new_id = self.UserDataFrame.Var_IDNo.get()
+            current_id = self.dataread_list[self.index][0]
+
+            # Check if the ID is actually being changed
+            if new_id != current_id:
+                # Check if the new ID already exists in the CSV
+                if self.is_id_existing(new_id):
+                    showerror("Error", "Student ID already exists.")
+                    return
+
             self.addCheck = False
             self.editCheck = False
             self.ID_removedisplay_check = False
@@ -753,6 +763,13 @@ class App(Tk):
             self.Year_DataDisplay.config(text=self.UserDataFrame.Var_Year.get())
             self.Gender_DataDisplay.config(text=self.UserDataFrame.Var_Gender.get())
 
+    def is_id_existing(self, student_id):
+        with open(self.filepath, newline='') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                if row[0] == student_id:
+                    return True
+        return False
 
     def after_edit_button(self, classObj, type=""):
 
