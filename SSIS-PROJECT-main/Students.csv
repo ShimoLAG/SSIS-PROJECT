@@ -1,12 +1,12 @@
 2020-0001,LeBron James SR.,BSIS,2nd Year,Male
 2020-0002,Jarred Vanderbilt,BSIT,2nd Year,Male
 2020-0003,Gabe Vincent,BSCS,2nd Year,Male
-2020-0004,Taurean Prince,BSCS,2nd Year,Male
-2020-0090,Spencer Dinwiddie,BSIT,2nd Year,Female
-2020-0006,Anthony Davis,BSIT,5th Year,Other
-2020-0009,Ichigo Kurosaki,BSIT,2nd Year,Female
+2020-0004,Taurean Prince,BSIS,2nd Year,Male
+2020-0090,Spencer Dinwiddie,BSCS,2nd Year,Female
+2020-0006,Anthony Davis,BSIS,5th Year,Other
+2020-0009,Ichigo Kurosaki,BSCA,2nd Year,Female
 2020-0010,Naruto Uzumaki,BSCS,2nd Year,Male
-2020-0011,Monkey D. Luffy,BSIS,2nd Year,Male
+2020-0011,Monkey D. Luffy,BSIT,2nd Year,Male
 2020-0023,Soren Kirkgard,BSIT,2nd Year,Male
 2020-0016,Aristotle Plato,BSCS,2nd Year,Male
 2020-0017,Stephen Curry,BSCS,2nd Year,Female
@@ -17,21 +17,21 @@
 2020-0038,Aron Huynh,BSIT,2nd Year,Male
 2020-0039,Blessing Munro,BSCS,2nd Year,Female
 2020-0040,Gracie Howard,BSCS,2nd Year,Female
-2020-0041,Maariya Smyth,BSIS,2nd Year,Female
+2020-0041,Maariya Smyth,BSIT,2nd Year,Female
 2020-0042,Sami Christie,BSCS,2nd Year,Female
 2020-0043,Crystal Noble,BSCS,2nd Year,Female
 2020-0044,Kaylie Owens,BSIT,2nd Year,Female
 2020-0045,Ricardo Milos,BSCS,2nd Year,Male
 2020-0046,Tess Dunne,BSCS,2nd Year,Female
-2020-0047,Archibald Robson,BSIS,2nd Year,Male
+2020-0047,Archibald Robson,BSIT,2nd Year,Male
 2020-0048,Connah Knights,BSCS,2nd Year,Male
 2020-0049,Kristy Mccabe,N/A,2nd Year,Female
 2020-0050,Pascal Humphrey,BSIT,2nd Year,Male
 2020-1699,Knee Garbanzos,BSCS,Irregular,Other
 2020-0038,Jun Paolo Bergado,N/A,1st Year,Other
 2929-2929,Dark,BSCS,1st Year,Male
-2020-1489,louise,BSIS,3rd Year,Male
-2020-1999,Cornelius the third,BSIS,3rd Year,Male
+2020-1489,louise,BSIT,3rd Year,Male
+2020-1999,Cornelius the third,BSIT,3rd Year,Male
 2028-1345,nasdnlaksd,BSIT,4th Year,Male
 2021-1001,LeBron James,BSCS,2nd Year,Male
 2021-1002,Jarred Vanderbilt,BSIT,2nd Year,Male
@@ -41,7 +41,7 @@
 2021-1006,Anthony Davis,BSCS,5th Year,Other
 2021-1009,Ichigo Kurosaki,BSCS,2nd Year,Female
 2021-1010,Naruto Uzumaki,BSCS,2nd Year,Male
-2021-1011,Monkey D. Luffy,BSIS,2nd Year,Male
+2021-1011,Monkey D. Luffy,BSIT,2nd Year,Male
 2021-1014,Soren Kirkgard,BSIT,2nd Year,Male
 2021-1016,Aristotle Plato,BSCS,2nd Year,Male
 2021-1017,Stephen Curry,BSCS,2nd Year,Female
@@ -52,18 +52,18 @@
 2021-1038,Aron Huynh,BSIT,2nd Year,Male
 2021-1039,Blessing Munro,BSCS,2nd Year,Female
 2021-1040,Gracie Howard,BSCS,2nd Year,Female
-2021-1041,Maariya Smyth,BSIS,2nd Year,Female
+2021-1041,Maariya Smyth,BSIT,2nd Year,Female
 2021-1042,Sami Christie,BSCS,2nd Year,Female
 2021-1043,Crystal Noble,BSCS,2nd Year,Female
 2021-1044,Kaylie Owens,BSIT,2nd Year,Female
 2021-1045,Ricardo Milos,BSCS,2nd Year,Male
 2021-1046,Tess Dunne,BSCS,2nd Year,Female
-2022-1047,Archibald Robson,BSIS,2nd Year,Male
+2022-1047,Archibald Robson,BSIT,2nd Year,Male
 2022-0005,Spencer Dinwiddie,BSIT,2nd Year,Female
 2023-0006,Anthony Davis,BSCS,5th Year,Other
 2024-0009,Ichigo Kurosaki,BSCS,2nd Year,Female
 2024-0010,Naruto Uzumaki,BSCS,2nd Year,Male
-2024-0011,Monkey D. Luffy,BSIS,2nd Year,Male
+2024-0011,Monkey D. Luffy,BSIT,2nd Year,Male
 2024-0014,Soren Kirkgard,BSIT,2nd Year,Male
 2024-0016,Aristotle Plato,BSCS,2nd Year,Male
 2024-0017,Stephen Curry,BSCS,2nd Year,Female
@@ -74,17 +74,17 @@
 2024-0038,Aron Huynh,BSIT,2nd Year,Male
 2024-0039,Blessing Munro,BSCS,2nd Year,Female
 2024-0040,Gracie Howard,BSCS,2nd Year,Female
-2024-0041,Maariya Smyth,BSIS,2nd Year,Female
+2024-0041,Maariya Smyth,BSIT,2nd Year,Female
 2024-0042,Sami Christie,BSCS,2nd Year,Female
 2024-0043,Crystal Noble,BSCS,2nd Year,Female
-2024-0044,Kaylie Owens,BSIT,2nd Year,Female
-2024-0045,Ricardo Milos,BSCS,2nd Year,Male
+2024-0044,Kaylie Owens,N/A,2nd Year,Female
+2024-0045,Ricardo Milos,BSCI,2nd Year,Male
 2024-0046,Tess Dunne,BSCS,2nd Year,Female
 2024-0005,Spencer Dinwiddie,BSIT,2nd Year,Female
 2024-0006,Anthony Davis,BSCS,5th Year,Other
 2024-0009,Ichigo Kurosaki,BSCS,2nd Year,Female
 2024-0010,Naruto Uzumaki,BSCS,2nd Year,Male
-2024-0011,Monkey D. Luffy,BSIS,2nd Year,Male
+2024-0011,Monkey D. Luffy,BSIT,2nd Year,Male
 2024-0014,Soren Kirkgard,BSIT,2nd Year,Male
 2024-0016,Aristotle Plato,BSCS,2nd Year,Male
 2024-0017,Stephen Curry,BSCS,2nd Year,Female
@@ -95,13 +95,21 @@
 2024-0038,Aron Huynh,BSIT,2nd Year,Male
 2024-0039,Blessing Munro,BSCS,2nd Year,Female
 2024-0040,Gracie Howard,BSCS,2nd Year,Female
-2024-0041,Maariya Smyth,BSIS,2nd Year,Female
+2024-0041,Maariya Smyth,BSIT,2nd Year,Female
 2024-0042,Sami Christie,BSCS,2nd Year,Female
 2024-0043,Crystal Noble,BSCS,2nd Year,Female
-2024-0044,Kaylie Owens,BSIT,2nd Year,Female
-2024-0045,Ricardo Milos,BSCS,2nd Year,Male
+2024-0044,Kaylie Owens,N/A,2nd Year,Female
+2024-0045,Ricardo Milos,N/A,2nd Year,Male
 2024-0046,Tess Dunne,BSCS,2nd Year,Female
 2020-1111,asd,BSCS,3rd Year,Male
 2020-0111,asdasd,BSIT,1st Year,Female
 2020-2331,asdasd,BSIT,1st Year,Male
-2020-0500,asdasd,BSIT,1st Year,Male
+2020-0500,asdasd,BSCS,1st Year,Male
+2020-0001,bocja,BSIT,1st Year,Male
+2029-0001,wa,BSIT,3rd Year,Male
+2023-0001,tast,BSIT,1st Year,Male
+2389-0923,test number 3,BSIT,3rd Year,Male
+2026-0001,asdasd,BSIS,1st Year,Male
+2999-0000,asdasdasd,BSIT,1st Year,Female
+2028-0001,asdasd,BSCA,Irregular,Female
+2111-1111,peter parker,BSCA,3rd Year,Female

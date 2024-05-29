@@ -1,5 +1,6 @@
 from tkinter import ttk
 from tkinter import *
+from tkinter import Tk, Menu, Button, StringVar, OptionMenu, ttk, messagebox
 from tkinter.messagebox import showwarning, showinfo, showerror
 from tkinter.messagebox import askyesno
 from tkinter import filedialog as fd
@@ -195,82 +196,99 @@ class App(Tk):
         # Start the window in maximized state
         self.state('zoomed')
 
-
         style = ttk.Style()
-        style.configure("Treeview.Heading", rowheight = 40)
-        style.configure("Treeview", rowheight = 40)
-        
+        style.configure("Treeview.Heading", rowheight=40)
+        style.configure("Treeview", rowheight=40)
 
         menubar = Menu(self)
         self.config(menu=menubar)
 
         file_menu = Menu(menubar, tearoff=0)
-        menubar.add_cascade(label="File",menu=file_menu)
+        menubar.add_cascade(label="File", menu=file_menu)
 
-        file_menu.add_command(label="New            'Creates a new CSV file and opens it.'", command = self.new_file)
-        file_menu.add_command(label="Open           'Opens a CSV file.'", command = self.select_file)
+        file_menu.add_command(label="New 'Creates a new CSV file and opens it.'", command=self.new_file)
+        file_menu.add_command(label="Open 'Opens a CSV file.'", command=self.select_file)
         file_menu.add_separator()
-        file_menu.add_command(label="Close          'Closes the program'", command = self.close_file)
+        file_menu.add_command(label="Close 'Closes the program'", command=self.close_file)
 
         framestyle = ttk.Style()
         framestyle.configure("mainframe.TFrame", background="#D2649A")
         framestyle.configure("secondframe.TFrame", background='#D2649A')
         framestyle.configure("dataFrame.TFrame", background='white')
 
-
         mainframe = ttk.Frame(self, style="mainframe.TFrame")
-        mainframe.grid(row=0, column=0, sticky = "news", rowspan = 40, columnspan = 3, ipadx=2)
+        mainframe.grid(row=0, column=0, sticky="news", rowspan=40, columnspan=3, ipadx=2)
         self.treeview = DatabaseDisplay(mainframe)
 
-
         secondframe = ttk.Frame(self, style="secondframe.TFrame")
-        secondframe.grid(row=0, column=3, sticky = "news", rowspan = 40, ipadx=8)
-
-
+        secondframe.grid(row=0, column=3, sticky="news", rowspan=40, ipadx=8)
 
         frame1 = ttk.Frame(secondframe, style="dataFrame.TFrame")
-        frame1.grid(row=0, column=3, sticky = "news", rowspan=5, ipadx=0, padx = 20, ipady = 0, columnspan = 5, pady = 30)
+        frame1.grid(row=0, column=3, sticky="news", rowspan=5, ipadx=0, padx=20, ipady=0, columnspan=5, pady=30)
 
-        frame2 = ttk.Frame(secondframe, style="dataFrame.TFrame", height = 197, width = 461)
-        frame2.grid(row=6, column=3, sticky = "nws", ipadx=0, padx = 20, columnspan = 5, pady = 40)
-
+        frame2 = ttk.Frame(secondframe, style="dataFrame.TFrame", height=197, width=461)
+        frame2.grid(row=6, column=3, sticky="nws", ipadx=0, padx=20, columnspan=5, pady=40)
         frame2.grid_propagate(0)
 
         self.UserDataFrame = UserDataDisplay(frame1)
-        UserButtonsFrame = ButtonsFrame(frame2) #needed to make the buttons appear on screen
+        UserButtonsFrame = ButtonsFrame(frame2)  # needed to make the buttons appear on screen
 
         self.treeview.Treeview_Update(self.filepath)
 
-
         self.Entry_IDNo = ttk.Entry(self.UserDataFrame, textvariable=self.UserDataFrame.Var_IDNo, style="UserDataDisplay.TEntry", width=9, font=('Lucida Sans', "16", 'bold'))
         self.Entry_FullName = ttk.Entry(self.UserDataFrame, textvariable=self.UserDataFrame.Var_FullName, style="UserDataDisplay.TEntry", width=20, font=('Lucida Sans', "16", 'bold'))
-
-        self.course_tuple = Methods_List.read_course_csv('Courses.csv')
-        self.Entry_Course = ttk.OptionMenu(self.UserDataFrame, self.UserDataFrame.Var_Course, self.course_tuple[0], *self.course_tuple)
         
+        course_options = Methods_List.read_course_csv('Courses.csv')
+        self.Var_Course = StringVar(self)
+        self.Var_Course.set(course_options[0])
+        self.Entry_Course = OptionMenu(self.UserDataFrame, self.Var_Course, *course_options)
+
 
         self.year_tuple = ("1st Year", "2nd Year", "3rd Year", "4th Year", "5th Year", "Irregular")
-        self.Option_Year = ttk.OptionMenu(self.UserDataFrame, self.UserDataFrame.Var_Year, self.year_tuple[0], *self.year_tuple)
-
-        
+        self.Option_Year = OptionMenu(self.UserDataFrame, self.UserDataFrame.Var_Year, self.year_tuple[0], *self.year_tuple)
 
         self.gender_tuple = ("-----", "Male", "Female", "Other")
-        self.Option_Gender = ttk.OptionMenu(self.UserDataFrame, self.UserDataFrame.Var_Gender, self.gender_tuple[0], *self.gender_tuple)
+        self.Option_Gender = OptionMenu(self.UserDataFrame, self.UserDataFrame.Var_Gender, self.gender_tuple[0], *self.gender_tuple)
 
-        self.Button_Done = Button(self.UserDataFrame, text="Done", relief=RAISED, fg="white", bg="#8E3E63", height = 1, width = 6, font=('Lucida Sans', "16", 'bold'), command = self.doneFunc)
+        self.Button_Done = Button(self.UserDataFrame, text="Done", relief="raised", fg="white", bg="#8E3E63", height=1, width=6, font=('Lucida Sans', "16", 'bold'), command=self.doneFunc)
 
-        self.Entry_IDNo.grid(row=1, column=4, pady = 20, sticky = "w")
-        self.Entry_FullName.grid(row=2, column=4, pady = 20, sticky = "w", columnspan = 2)
-        self.Entry_Course.grid(row=3, column=4, pady = 20, sticky = "w")
-        
-
-        self.Option_Year.grid(row=4, column=4, pady = 20, sticky = "w")
-        self.Option_Gender.grid(row=5, column=4, pady = 20, sticky = "w")
-
+        self.Entry_IDNo.grid(row=1, column=4, pady=20, sticky="w")
+        self.Entry_FullName.grid(row=2, column=4, pady=20, sticky="w", columnspan=2)
+        self.Entry_Course.grid(row=3, column=4, pady=20, sticky="w")
+        self.Option_Year.grid(row=4, column=4, pady=20, sticky="w")
+        self.Option_Gender.grid(row=5, column=4, pady=20, sticky="w")
         self.Button_Done.grid(row=5, column=5, sticky="nw")
 
         self.before_edit_button(self.UserDataFrame)
         self.treeview.bind('<<TreeviewSelect>>', self.item_selected)
+
+        self.update_course_options()
+
+
+
+    def update_course_options(self):
+        # Method to read courses from CSV and update the OptionMenu
+        
+        self.course_tuple = Methods_List.read_course_csv('Courses.csv')
+        
+
+        # Check if Entry_Course is an OptionMenu
+        if isinstance(self.Entry_Course, ttk.OptionMenu):
+            # Access the menu attribute
+            menu = self.Entry_Course['menu']
+            if menu is None:
+                print("Error: OptionMenu's menu is None")
+                return
+
+            menu.delete(0, "end")
+            for course in self.course_tuple:
+                menu.add_command(label=course, command=lambda value=course: self.Var_Course.set(value))
+            if self.course_tuple:
+                self.Var_Course.set(self.course_tuple[0])
+        
+           
+
+
 #closes the APP
     def close_file(self): #ward
         close_window = askyesno("Close Student Information System?", "Are you sure you want to exit?")
@@ -329,6 +347,51 @@ class App(Tk):
             pass
 
 
+    def course_search_type(self, event): # Handler for course frame search bar
+        try:
+            cinput = self.cinput.get()
+            if cinput == '':
+                # Update the treeview to show all courses if search input is empty
+                self.courseDisplay()
+            else:
+                search_display = []
+                self.course_treeview.selection_remove(*self.course_treeview.selection())
+
+                # Prepare the search input for regex match
+                cinput = "^" + cinput
+
+                # Read data from CSV
+                dataread_list = cmd.csv_read('Courses.csv')
+
+                # Search through the CSV data
+                for item in dataread_list:
+                    if re.match(cinput, item[0]):  # Assuming course code is in the first column
+                        search_display.append(item)
+
+                # Update the treeview with search results
+                self.course_update(search_display)
+
+                try:
+                    # Set the selection to the first item, if available
+                    self.course_treeview.selection_set('I001')
+                except TclError:
+                    # Handle the case where the item might not exist
+                    pass
+
+        except FileNotFoundError:
+            # Handle the case where the file is not found
+            showwarning("No files opened", "Create/Open a file first.\nClick 'File' on the top-left corner.")
+        except Exception as e:
+            # Handle other potential exceptions
+            print(f"An error occurred: {e}")
+        finally:
+            # Any cleanup code can be added here
+            pass
+
+
+
+
+
 
     #the function for the course window, everytime we click the course button this pops up
     def course_window_init(self): 
@@ -369,9 +432,11 @@ class App(Tk):
         Button(course_buttons_frame, text = "Add", relief=RAISED, fg="white", bg="#8E3E63", height = 1, width = 6, font=('Lucida Sans', "16", 'bold'), command = lambda: self.addcourse(course_window)).pack(padx = 10, pady = 20)
         Button(course_buttons_frame, text = "Edit", relief=RAISED, fg="white", bg="#8E3E63", height = 1, width = 6, font=('Lucida Sans', "16", 'bold'), command = lambda: self.editcourse(course_window)).pack(padx = 10, pady = 20)
         Button(course_buttons_frame, text = "Delete", relief=RAISED, fg="white", bg="#8E3E63", height = 1, width = 6, font=('Lucida Sans', "16", 'bold'), command = lambda: self.delcourse(course_window)).pack(padx = 10, pady = 20)
+        course_search = Entry(course_buttons_frame, width = 5, font=('Lucida Sans', "16", 'bold'), textvariable = self.cinput)
+        course_search.pack(padx = 10, pady = 20)
+        Button(course_buttons_frame, text = "Search", relief=RAISED, fg="white", bg="#141d26", height = 1, width = 6, font=('Lucida Sans', "16", 'bold'), command = lambda: self.course_search_type("<KeyRelease>")).pack(padx = 10, pady = 20)
         
-        
-
+        course_search.bind("<KeyRelease>", self.course_search_type)
 
         self.course_treeview.bind('<<TreeviewSelect>>', self.course_selected)
 
@@ -408,6 +473,18 @@ class App(Tk):
             # Handle other potential exceptions
             print(f"An error occurred: {e}")
 
+    def course_update(self, course_list):
+
+
+        for i in self.course_treeview.get_children():
+            self.course_treeview.delete(i)
+
+
+        count = 1
+        for element in course_list:
+            rowid = 'I' + str('{:03}'.format(count))
+            self.course_treeview.insert('', END, iid=rowid, values=element)
+            count += 1
 
     def course_selected(self, event):
         course_row = ''
@@ -468,22 +545,18 @@ class App(Tk):
             updated_courses = []
             course_updated = False
 
-            # Read the existing courses from the CSV
+            # Check for duplicate course code before making changes
             with open('Courses.csv', 'r', newline='', encoding='utf-8') as csvfile:
                 reader = csv.reader(csvfile)
                 header = next(reader)  # Read the header
                 for row in reader:
+                    if row[0] == ccode and row[0] != initial_ccode:
+                        raise ValueError("The course code that you entered already exists.")
                     if row[0] == initial_ccode:
                         row[0] = ccode
                         row[1] = cname
                         course_updated = True
                     updated_courses.append(row)
-
-            # Check for duplicate course code
-            if not course_updated:
-                for row in updated_courses:
-                    if row[0] == ccode and row[0] != initial_ccode:
-                        raise ValueError("The course code that you entered already exists.")
 
             # Write the updated courses back to the CSV
             with open('Courses.csv', 'w', newline='', encoding='utf-8') as csvfile:
@@ -511,16 +584,14 @@ class App(Tk):
             showinfo("Success", f"'{initial_ccode}' has been successfully edited.")
             course_window.focus()
             self.courseDisplay()
+            self.update_course_options()
         except FileNotFoundError:
             showwarning("No files opened", "Create/Open a file first.\nClick 'File' on the top-left corner.")
             course_window.focus()
         except ValueError as e:
             showwarning("Invalid Input", str(e))
             course_window.focus()
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            showwarning("Error", "An error occurred while editing the course.")
-            course_window.focus()
+        
 
     def delcourse(self, course_window):
         course_delete_warn = askyesno(title = "Delete?", message = "Are you sure you want to delete the selected row?")
@@ -586,16 +657,14 @@ class App(Tk):
             course_window.focus()
             self.courseDisplay()
 
+            self.update_course_options()
+
         except FileNotFoundError:
             showwarning("No files opened", "Create/Open a file first.\nClick 'File' on the top-left corner.")
             course_window.focus()
         except IndexError as e:
             print(f"IndexError occurred: {e}")
             showwarning("Error", "Index out of range for courses.")
-            course_window.focus()
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            showwarning("Error", "An error occurred while deleting the course.")
             course_window.focus()
 
 
@@ -659,16 +728,15 @@ class App(Tk):
             showinfo("Success", f"'{new_course_code}' has been successfully added to the courses.")
             course_window.focus()
             self.courseDisplay()
+
+            self.update_course_options()
         except FileNotFoundError:
             showwarning("No files opened", "Create/Open a file first.\nClick 'File' on the top-left corner.")
             course_window.focus()
         except ValueError as e:
             showwarning("Invalid Input", str(e))
             course_window.focus()
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            showwarning("Error", "An error occurred while adding the course.")
-            course_window.focus()
+        
 
 
     def add(self):
